@@ -5,7 +5,7 @@ import { CheckCircle } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-r from-brand-600 to-brand-700 pt-12 pb-20 relative overflow-hidden">
+    <div className="bg-gradient-to-r from-brand-700 to-brand-600 pt-16 pb-24 relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -mr-20 -mt-20"></div>

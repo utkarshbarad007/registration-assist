@@ -20,10 +20,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 }) => {
   return (
     <div className="service-card h-full flex flex-col">
-      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 text-brand-600 mb-4">
+      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 text-brand-600 mb-5">
         {icon}
       </div>
-      <h3 className="text-lg font-bold text-gray-800 mb-2">{title}</h3>
+      <h3 className="text-lg font-bold text-gray-800 mb-3">{title}</h3>
       <p className="text-gray-600 text-sm flex-grow mb-4">{description}</p>
       
       {price && (

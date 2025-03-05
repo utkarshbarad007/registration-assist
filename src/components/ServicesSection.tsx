@@ -1,12 +1,26 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import ServiceCard from './ServiceCard';
 import { 
   Building2, Briefcase, BookOpen, LandPlot, BarChart, FileCheck, Award, 
-  ShieldCheck, Landmark, TrendingUp, Cpu, BookOpenCheck 
+  ShieldCheck, Landmark, TrendingUp, Cpu, BookOpenCheck, ChevronLeft, ChevronRight 
 } from 'lucide-react';
 
 const ServicesSection = () => {
+  const servicesCategoriesRef = useRef<HTMLDivElement>(null);
+  const topServicesRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = 300;
+      if (direction === 'left') {
+        ref.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+  };
+
   const serviceCategories = [
     {
       icon: <Building2 size={24} />,
@@ -94,39 +108,87 @@ const ServicesSection = () => {
   return (
     <div className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16" id="services">
+        <div className="text-center mb-12" id="services">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">What We can Do For You</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {serviceCategories.map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              route={service.route}
-            />
-          ))}
+        <div className="relative">
+          <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 z-10 md:flex hidden">
+            <button 
+              onClick={() => scroll(servicesCategoriesRef, 'left')}
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          </div>
+          
+          <div 
+            ref={servicesCategoriesRef}
+            className="flex overflow-x-auto pb-6 hide-scrollbar gap-6 px-1 snap-x snap-mandatory"
+          >
+            {serviceCategories.map((service, index) => (
+              <div key={index} className="min-w-[300px] snap-start">
+                <ServiceCard
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  route={service.route}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 md:flex hidden">
+            <button 
+              onClick={() => scroll(servicesCategoriesRef, 'right')}
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
         </div>
 
-        <div className="text-center mb-16">
+        <div className="text-center my-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Popular Services</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">Most requested business solutions</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {topServices.map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              price={service.price}
-              route={service.route}
-            />
-          ))}
+        <div className="relative">
+          <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 z-10 md:flex hidden">
+            <button 
+              onClick={() => scroll(topServicesRef, 'left')}
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          </div>
+          
+          <div 
+            ref={topServicesRef}
+            className="flex overflow-x-auto pb-6 hide-scrollbar gap-6 px-1 snap-x snap-mandatory"
+          >
+            {topServices.map((service, index) => (
+              <div key={index} className="min-w-[300px] snap-start">
+                <ServiceCard
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  price={service.price}
+                  route={service.route}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 md:flex hidden">
+            <button 
+              onClick={() => scroll(topServicesRef, 'right')}
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

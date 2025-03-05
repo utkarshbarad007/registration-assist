@@ -21,11 +21,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-gradient-to-r from-brand-700/90 to-brand-600/90 backdrop-blur-md'}`}>
       {/* Top Bar with Contact Info */}
-      <div className="bg-brand-600 text-white py-2 px-4 hidden md:block">
+      <div className="bg-brand-700 text-white py-2 px-4 hidden md:block">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-1">
               <Phone size={14} />
               <span className="text-sm">+91 8956214625</span>
@@ -45,13 +45,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center py-4">
           <NavLink to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-brand-600">BusinessAssist</span>
+            <span className={`text-xl font-bold ${isScrolled ? 'text-brand-600' : 'text-white'}`}>BusinessAssist</span>
           </NavLink>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             <div className="group relative">
-              <button className="flex items-center space-x-1 nav-link font-medium">
+              <button className={`flex items-center space-x-1 font-medium ${isScrolled ? 'text-gray-700 hover:text-brand-600' : 'text-white hover:text-brand-100'}`}>
                 <span>Start Your Business</span>
                 <ChevronDown size={16} />
               </button>
@@ -69,7 +69,7 @@ const Navbar = () => {
             </div>
 
             <div className="group relative">
-              <button className="flex items-center space-x-1 nav-link font-medium">
+              <button className={`flex items-center space-x-1 font-medium ${isScrolled ? 'text-gray-700 hover:text-brand-600' : 'text-white hover:text-brand-100'}`}>
                 <span>Compliance Plan</span>
                 <ChevronDown size={16} />
               </button>
@@ -83,7 +83,7 @@ const Navbar = () => {
             </div>
 
             <div className="group relative">
-              <button className="flex items-center space-x-1 nav-link font-medium">
+              <button className={`flex items-center space-x-1 font-medium ${isScrolled ? 'text-gray-700 hover:text-brand-600' : 'text-white hover:text-brand-100'}`}>
                 <span>Trademark & IP</span>
                 <ChevronDown size={16} />
               </button>
@@ -97,7 +97,7 @@ const Navbar = () => {
             </div>
 
             <div className="group relative">
-              <button className="flex items-center space-x-1 nav-link font-medium">
+              <button className={`flex items-center space-x-1 font-medium ${isScrolled ? 'text-gray-700 hover:text-brand-600' : 'text-white hover:text-brand-100'}`}>
                 <span>Registration</span>
                 <ChevronDown size={16} />
               </button>
@@ -111,7 +111,7 @@ const Navbar = () => {
             </div>
 
             <div className="group relative">
-              <button className="flex items-center space-x-1 nav-link font-medium">
+              <button className={`flex items-center space-x-1 font-medium ${isScrolled ? 'text-gray-700 hover:text-brand-600' : 'text-white hover:text-brand-100'}`}>
                 <span>ISO Certification</span>
                 <ChevronDown size={16} />
               </button>
@@ -126,7 +126,7 @@ const Navbar = () => {
             </div>
 
             <div className="group relative">
-              <button className="flex items-center space-x-1 nav-link font-medium">
+              <button className={`flex items-center space-x-1 font-medium ${isScrolled ? 'text-gray-700 hover:text-brand-600' : 'text-white hover:text-brand-100'}`}>
                 <span>FSSAI</span>
                 <ChevronDown size={16} />
               </button>
@@ -141,7 +141,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-gray-700"
+            className={`lg:hidden ${isScrolled ? 'text-gray-700' : 'text-white'}`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
