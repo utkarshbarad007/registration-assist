@@ -7,6 +7,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PrivateLimitedCompany from "./pages/PrivateLimitedCompany";
 import LLPRegistration from "./pages/LLPRegistration";
+import OnePersonCompany from "./pages/OnePersonCompany";
+import PublicLimitedCompany from "./pages/PublicLimitedCompany";
+import ForeignSubsidiary from "./pages/ForeignSubsidiary";
+import Section8Company from "./pages/Section8Company";
+import NidhiCompany from "./pages/NidhiCompany";
+import ChitFundCompany from "./pages/ChitFundCompany";
+import ProducerCompany from "./pages/ProducerCompany";
+import NidhiCompanyCompliance from "./pages/NidhiCompanyCompliance";
+import LLPBasicCompliance from "./pages/LLPBasicCompliance";
+import LLPAdvancedCompliance from "./pages/LLPAdvancedCompliance";
+import PrivateLimitedCompliance from "./pages/PrivateLimitedCompliance";
+import OPCCompliance from "./pages/OPCCompliance";
+import TrademarkRegistration from "./pages/TrademarkRegistration";
+import TrademarkRenewal from "./pages/TrademarkRenewal";
 import ServiceCategory from "./pages/ServiceCategory";
 import NotFound from "./pages/NotFound";
 
@@ -29,9 +43,27 @@ const App = () => (
           <Route path="/services/iso-certification" element={<ServiceCategory />} />
           <Route path="/services/fssai" element={<ServiceCategory />} />
           
-          {/* Individual Service Routes */}
+          {/* Start Your Business Routes */}
           <Route path="/services/private-limited-company" element={<PrivateLimitedCompany />} />
+          <Route path="/services/one-person-company" element={<OnePersonCompany />} />
+          <Route path="/services/public-limited-company" element={<PublicLimitedCompany />} />
+          <Route path="/services/foreign-subsidiary" element={<ForeignSubsidiary />} />
           <Route path="/services/llp" element={<LLPRegistration />} />
+          <Route path="/services/section-8-company" element={<Section8Company />} />
+          <Route path="/services/nidhi-company" element={<NidhiCompany />} />
+          <Route path="/services/chit-fund-company" element={<ChitFundCompany />} />
+          <Route path="/services/producer-company" element={<ProducerCompany />} />
+          
+          {/* Compliance Plan Routes */}
+          <Route path="/services/nidhi-company-compliance" element={<NidhiCompanyCompliance />} />
+          <Route path="/services/llp-basic-compliance" element={<LLPBasicCompliance />} />
+          <Route path="/services/llp-advanced-compliance" element={<LLPAdvancedCompliance />} />
+          <Route path="/services/private-limited-compliance" element={<PrivateLimitedCompliance />} />
+          <Route path="/services/opc-compliance" element={<OPCCompliance />} />
+          
+          {/* Trademark & IP Routes */}
+          <Route path="/services/trademark-registration" element={<TrademarkRegistration />} />
+          <Route path="/services/trademark-renewal" element={<TrademarkRenewal />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
