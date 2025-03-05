@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,6 +23,8 @@ import TrademarkRegistration from "./pages/TrademarkRegistration";
 import TrademarkRenewal from "./pages/TrademarkRenewal";
 import ServiceCategory from "./pages/ServiceCategory";
 import FSSAICentralLicense from "./pages/FSSAICentralLicense";
+import BasicFSSAIRegistration from "./pages/BasicFSSAIRegistration";
+import FSSAIStateLicense from "./pages/FSSAIStateLicense";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +70,8 @@ const App = () => (
           
           {/* FSSAI Routes */}
           <Route path="/services/fssai-central-license" element={<FSSAICentralLicense />} />
+          <Route path="/services/basic-fssai-registration" element={<BasicFSSAIRegistration />} />
+          <Route path="/services/fssai-state-license" element={<FSSAIStateLicense />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
