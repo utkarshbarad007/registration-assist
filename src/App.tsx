@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,6 +21,7 @@ import OPCCompliance from "./pages/OPCCompliance";
 import TrademarkRegistration from "./pages/TrademarkRegistration";
 import TrademarkRenewal from "./pages/TrademarkRenewal";
 import ServiceCategory from "./pages/ServiceCategory";
+import FSSAICentralLicense from "./pages/FSSAICentralLicense";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -64,6 +64,9 @@ const App = () => (
           {/* Trademark & IP Routes */}
           <Route path="/services/trademark-registration" element={<TrademarkRegistration />} />
           <Route path="/services/trademark-renewal" element={<TrademarkRenewal />} />
+          
+          {/* FSSAI Routes */}
+          <Route path="/services/fssai-central-license" element={<FSSAICentralLicense />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
