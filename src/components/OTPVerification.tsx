@@ -17,6 +17,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   const [timeLeft, setTimeLeft] = useState<number>(30);
   const [isResendDisabled, setIsResendDisabled] = useState<boolean>(true);
   const [verificationId, setVerificationId] = useState<string>('');
+  const [mockOtp, setMockOtp] = useState<string>('');
 
   // This is a mock function that would be replaced with actual Firebase implementation
   const sendOTP = async () => {
@@ -24,6 +25,10 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       console.log('Sending OTP to', phoneNumber);
       // In a real implementation, this would call Firebase's signInWithPhoneNumber
       // and return a confirmation result
+
+      // Generate a mock OTP (6 digits)
+      const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+      setMockOtp(generatedOtp);
 
       // Simulate successful OTP send
       const mockVerificationId = Math.random().toString(36).substring(2, 15);
@@ -35,10 +40,10 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       
       toast({
         title: "OTP Sent",
-        description: `A verification code has been sent to ${phoneNumber}.`,
+        description: `A verification code has been sent to ${phoneNumber}. For testing, use code: ${generatedOtp}`,
       });
       
-      console.log('Mock verification ID:', mockVerificationId);
+      console.log('Mock verification ID:', mockVerificationId, 'Mock OTP:', generatedOtp);
     } catch (error) {
       console.error('Error sending OTP:', error);
       toast({
@@ -55,9 +60,8 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       console.log('Verifying OTP:', otp, 'for verification ID:', verificationId);
       // In a real implementation, this would call confirmationResult.confirm(otp)
       
-      // Simulate OTP verification
-      // For demo purposes, any 6-digit OTP is considered valid
-      if (otp.length === 6) {
+      // Verify against our mock OTP or accept any 6-digit code if in development
+      if (otp === mockOtp || (process.env.NODE_ENV === 'development' && otp.length === 6)) {
         toast({
           title: "Verification Successful",
           description: "Your phone number has been verified.",
@@ -66,7 +70,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       } else {
         toast({
           title: "Invalid Code",
-          description: "Please enter a valid 6-digit verification code.",
+          description: "Please enter the correct verification code.",
           variant: "destructive",
         });
       }
@@ -105,9 +109,14 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 mb-2">
           Enter the 6-digit code sent to {phoneNumber}
         </p>
+        {mockOtp && (
+          <div className="text-sm bg-amber-50 p-2 rounded border border-amber-200">
+            <span className="font-medium">Test Mode:</span> Use code <span className="font-bold">{mockOtp}</span>
+          </div>
+        )}
       </div>
       
       <div className="space-y-3">
