@@ -163,10 +163,10 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({
                 <h3 className="font-semibold text-gray-800 mb-4">Still have questions?</h3>
                 <p className="text-gray-600 mb-4">Our experts are here to help you with any queries</p>
                 <a 
-                  href="tel:+918956214625" 
+                  href="tel:+91 93285 27395" 
                   className="flex items-center justify-center w-full bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-medium py-2.5 px-4 rounded-lg"
                 >
-                  Call Now: +91 8956214625
+                  Call Now: +91 93285 27395
                 </a>
               </div>
             </div>
