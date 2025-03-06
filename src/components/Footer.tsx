@@ -107,17 +107,18 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-brand-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">
-                  123 Business Tower, Sector 22<br />
-                  New Delhi, 110001, India
+                  1815 , BLOCK-B , NAVRATNA CORPORATE PARK
+                  AMBLI BOPAL ROAD AHMEDABAD
+                  Ahmedabad, Gujarat 380058
                 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-brand-400 flex-shrink-0" />
-                <span className="text-gray-400">+91 8956214625</span>
+                <span className="text-gray-400">+91 93285 27395</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-brand-400 flex-shrink-0" />
-                <span className="text-gray-400">info@businessassist.in</span>
+                <span className="text-gray-400">support@bizfile.in</span>
               </li>
             </ul>
           </div>
@@ -125,7 +126,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">© 2023 BusinessAssist. All rights reserved.</p>
+            <p className="text-gray-400 text-sm">© 2025 Bizfile. Design & Develop by Technowire Data Science Limited</p>
             <div className="mt-4 md:mt-0">
               <ul className="flex space-x-6">
                 <li>
