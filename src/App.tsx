@@ -31,6 +31,8 @@ import FSSAIStateLicense from "./pages/FSSAIStateLicense";
 import GSTRegistration from "./pages/GSTRegistration";
 import MSMERegistration from "./pages/MSMERegistration";
 import StartupIndiaRegistration from "./pages/StartupIndiaRegistration";
+import AngelTaxExemption from "./pages/AngelTaxExemption";
+import TaxExemption80IAC from "./pages/TaxExemption80IAC";
 import ISO9001 from "./pages/ISO9001";
 import ISO22000 from "./pages/ISO22000";
 import ISO14001 from "./pages/ISO14001";
@@ -87,6 +89,8 @@ const App = () => (
           <Route path="/services/gst-registration" element={<GSTRegistration />} />
           <Route path="/services/msme-registration" element={<MSMERegistration />} />
           <Route path="/services/startup-india-registration" element={<StartupIndiaRegistration />} />
+          <Route path="/services/angel-tax-exemption" element={<AngelTaxExemption />} />
+          <Route path="/services/80iac-tax-exemption" element={<TaxExemption80IAC />} />
           
           {/* ISO Certification Routes */}
           <Route path="/services/iso-9001" element={<ISO9001 />} />
