@@ -45,7 +45,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center py-4">
           <NavLink to="/" className="flex items-center space-x-2">
-            <span className={`text-xl font-bold ${isScrolled ? 'text-brand-600' : 'text-white'}`}>BusinessAssist</span>
+            <span className={`text-xl font-bold ${isScrolled ? 'text-brand-600' : 'text-white'}`}>BizFile</span>
           </NavLink>
 
           {/* Desktop Menu */}
