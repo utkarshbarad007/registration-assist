@@ -5,76 +5,91 @@ import ServiceDetail from '@/components/ServiceDetail';
 const GSTRegistration = () => {
   const serviceData = {
     title: "GST Registration",
-    description: "Obtain mandatory Goods and Services Tax registration for your business to legally collect GST from customers and claim input tax credits.",
+    description: "Comprehensive assistance for obtaining Goods and Services Tax (GST) registration for your business, ensuring compliance with Indian tax regulations.",
     price: 1999,
     category: "Registrations",
     serviceType: "GST Registration",
     features: [
-      "Legal Compliance with GST Laws",
-      "Ability to Collect GST from Customers",
-      "Eligibility to Claim Input Tax Credits",
-      "Access to GST Portal & Services",
-      "Expanded Business Opportunities",
-      "Ability to Do Interstate Business",
-      "Seamless Input Tax Credit Chain",
-      "Enhanced Business Credibility",
-      "Legal Entity Status for Business",
-      "Protection from Penalties & Legal Issues"
+      "Mandatory for Businesses with Turnover above Threshold",
+      "15-Digit GST Identification Number (GSTIN)",
+      "Legal Requirement for Interstate Sales",
+      "Enables Input Tax Credit Claims",
+      "Facilitates Seamless Flow of Tax Credits",
+      "Enhances Business Credibility",
+      "Required for E-commerce Sellers",
+      "Allows Unified Tax System Compliance",
+      "Supports Digital Invoice Management",
+      "Enables Participation in Government Tenders"
     ],
     requirements: [
-      "PAN Card of Business/Proprietor",
-      "Aadhar Card of Proprietor/Partners/Directors",
-      "Business Registration Documents",
+      "PAN Card of Business/Proprietor/Directors",
+      "Aadhaar Card of Proprietor/Partners/Directors",
       "Photograph of Proprietor/Partners/Directors",
-      "Business Address Proof (Rent Agreement/Utility Bill)",
-      "Bank Account Details with Statements",
-      "Digital Signature Certificate (for companies/LLPs)",
-      "Details of Business Activities",
-      "HSN/SAC Codes for Your Products/Services",
-      "Expected Annual Turnover"
+      "Business Registration Certificate",
+      "Bank Account Details with Statement",
+      "Address Proof of Business Premises",
+      "Electricity Bill of Business Premises",
+      "Rent Agreement (if premises is rented)",
+      "NOC from Property Owner (if required)",
+      "Partnership Deed (for partnership firms)",
+      "Certificate of Incorporation (for companies)",
+      "Board Resolution (for companies)",
+      "Letter of Authorization with ID proof"
     ],
     process: [
       {
-        title: "Eligibility Assessment",
-        description: "We verify your registration requirement based on turnover, interstate supplies, and business type."
+        title: "Information Collection",
+        description: "We collect all necessary business details and documents required for GST registration."
       },
       {
-        title: "Documentation Preparation",
-        description: "We collect and prepare all required documents in the proper format for application."
+        title: "Application Preparation",
+        description: "Our experts prepare your GST registration application with accurate information."
       },
       {
-        title: "Application Filing",
-        description: "We file your GST registration application on the GST portal with all supporting documents."
+        title: "Document Submission",
+        description: "We submit your application on the GST portal with all supporting documents."
       },
       {
-        title: "ARN Tracking",
-        description: "We track your Application Reference Number (ARN) and monitor its status until approval."
+        title: "Application Tracking",
+        description: "We monitor your application status and keep you updated on its progress."
       },
       {
-        title: "GSTIN Acquisition",
-        description: "Upon approval, we help you obtain your GST Identification Number (GSTIN) and access credentials."
+        title: "Query Resolution",
+        description: "Our team handles any queries or additional requirements from tax authorities."
+      },
+      {
+        title: "Verification Support",
+        description: "We assist with any verification processes required by tax authorities."
+      },
+      {
+        title: "GSTIN Issuance",
+        description: "Upon approval, we help you obtain your GST Identification Number (GSTIN)."
+      },
+      {
+        title: "Post-Registration Guidance",
+        description: "We provide guidance on initial compliances and filing requirements after registration."
       }
     ],
     faqs: [
       {
-        question: "When is GST registration mandatory?",
-        answer: "GST registration is mandatory when your aggregate turnover exceeds ₹20 lakhs (₹10 lakhs for special category states), if you make interstate supplies, sell through e-commerce platforms, are liable to pay tax under reverse charge, or are a specific category of business regardless of turnover."
+        question: "Who needs to register for GST?",
+        answer: "GST registration is mandatory for businesses with aggregate turnover exceeding Rs. 20 lakhs (Rs. 10 lakhs for special category states). It's also required for businesses making interstate supplies, e-commerce sellers, and certain specified categories regardless of turnover threshold."
       },
       {
-        question: "Can I register voluntarily even if not required?",
-        answer: "Yes, you can opt for voluntary registration even if your turnover is below the threshold. This allows you to claim input tax credits and generally makes your business more credible to larger clients who prefer GST-registered vendors."
+        question: "How long does it take to get GST registration?",
+        answer: "Typically, GST registration is completed within 5-7 working days after submission of all required documents, provided there are no queries raised by the tax department."
       },
       {
-        question: "How many GSTINs does a business need if operating in multiple states?",
-        answer: "You need separate GST registrations for each state where you have a business presence. Each state will have a unique GSTIN, even though all are linked to the same PAN."
+        question: "Can I register for GST if my business is not yet started?",
+        answer: "Yes, you can apply for GST registration before commencing business operations. This is known as voluntary registration and is beneficial if you expect to make interstate supplies or want to claim input tax credits."
       },
       {
-        question: "What happens if I delay GST registration after crossing the threshold?",
-        answer: "Late registration can result in penalties, including paying GST from the date you became liable (without being able to collect it from previous customers) and a daily late fee. You might also face difficulties with input tax credit claims for the unregistered period."
+        question: "What happens if I don't register for GST despite being eligible?",
+        answer: "Not registering for GST when required can result in penalties (up to 10% of the tax due), inability to collect GST from customers, loss of input tax credits, and legal complications including potential business disruptions."
       },
       {
-        question: "Can I cancel my GST registration if my turnover falls below the threshold?",
-        answer: "Yes, you can apply for cancellation if your turnover falls below the threshold and you don't anticipate exceeding it in the foreseeable future. However, voluntary registrations must typically be maintained for at least 12 months before cancellation."
+        question: "Can I have multiple GSTINs for one business?",
+        answer: "Yes, if your business operates in multiple states, you need separate GSTIN for each state of operation. However, for multiple business verticals within the same state, you can opt for separate registration with certain conditions."
       }
     ]
   };

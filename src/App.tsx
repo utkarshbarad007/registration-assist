@@ -21,10 +21,22 @@ import PrivateLimitedCompliance from "./pages/PrivateLimitedCompliance";
 import OPCCompliance from "./pages/OPCCompliance";
 import TrademarkRegistration from "./pages/TrademarkRegistration";
 import TrademarkRenewal from "./pages/TrademarkRenewal";
+import TrademarkOpposition from "./pages/TrademarkOpposition";
+import TrademarkAssignment from "./pages/TrademarkAssignment";
+import CopyrightRegistration from "./pages/CopyrightRegistration";
 import ServiceCategory from "./pages/ServiceCategory";
 import FSSAICentralLicense from "./pages/FSSAICentralLicense";
 import BasicFSSAIRegistration from "./pages/BasicFSSAIRegistration";
 import FSSAIStateLicense from "./pages/FSSAIStateLicense";
+import GSTRegistration from "./pages/GSTRegistration";
+import MSMERegistration from "./pages/MSMERegistration";
+import StartupIndiaRegistration from "./pages/StartupIndiaRegistration";
+import ISO9001 from "./pages/ISO9001";
+import ISO22000 from "./pages/ISO22000";
+import ISO14001 from "./pages/ISO14001";
+import ISO45001 from "./pages/ISO45001";
+import ISO13485 from "./pages/ISO13485";
+import ISO27001 from "./pages/ISO27001";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +79,22 @@ const App = () => (
           {/* Trademark & IP Routes */}
           <Route path="/services/trademark-registration" element={<TrademarkRegistration />} />
           <Route path="/services/trademark-renewal" element={<TrademarkRenewal />} />
+          <Route path="/services/trademark-opposition" element={<TrademarkOpposition />} />
+          <Route path="/services/trademark-assignment" element={<TrademarkAssignment />} />
+          <Route path="/services/copyright-registration" element={<CopyrightRegistration />} />
+          
+          {/* Registration Routes */}
+          <Route path="/services/gst-registration" element={<GSTRegistration />} />
+          <Route path="/services/msme-registration" element={<MSMERegistration />} />
+          <Route path="/services/startup-india-registration" element={<StartupIndiaRegistration />} />
+          
+          {/* ISO Certification Routes */}
+          <Route path="/services/iso-9001" element={<ISO9001 />} />
+          <Route path="/services/iso-22000" element={<ISO22000 />} />
+          <Route path="/services/iso-14001" element={<ISO14001 />} />
+          <Route path="/services/iso-45001" element={<ISO45001 />} />
+          <Route path="/services/iso-13485" element={<ISO13485 />} />
+          <Route path="/services/iso-27001" element={<ISO27001 />} />
           
           {/* FSSAI Routes */}
           <Route path="/services/fssai-central-license" element={<FSSAICentralLicense />} />
