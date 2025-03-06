@@ -5,8 +5,8 @@ import ServiceDetail from '@/components/ServiceDetail';
 const FSSAIStateLicense = () => {
   const serviceData = {
     title: "FSSAI State License",
-    description: "Standard food safety license for medium food businesses with annual turnover between Rs. 12 lakhs to 20 crores, operating within a single state.",
-    price: 3999,
+    description: "Comprehensive food safety license for medium-sized food businesses with annual turnover between Rs. 12 lakhs to Rs. 20 crores, operating within a single state.",
+    price: 3499,
     category: "FSSAI",
     serviceType: "FSSAI State License",
     features: [
@@ -14,29 +14,32 @@ const FSSAIStateLicense = () => {
       "14-Digit License Number",
       "Mandatory Display at Business Premises",
       "Limited to Single State Operations",
-      "Required for Medium Manufacturers",
-      "Covers Medium Food Retailers",
-      "Includes Distributors & Wholesalers",
-      "Food Storage Units",
-      "Transporters with Medium Fleet",
-      "Access to Food Safety Training Tools"
+      "Suitable for Medium Food Businesses",
+      "Includes Medium Scale Manufacturers",
+      "Covers Distributors with State-wide Network",
+      "Storage Facilities with Medium Capacity",
+      "Restaurant Chains with Multiple Outlets in Same State",
+      "Catering Services with Significant Operations"
     ],
     requirements: [
-      "Business Registration Documents (Proprietorship/Partnership/LLP/Company)",
-      "Identity & Address Proof of Proprietor/Partners/Directors",
+      "Identity Proof of Proprietor/Partners/Directors",
+      "Address Proof of Business Premises",
       "Passport Size Photograph of Applicant",
-      "Business Premises Ownership/Rent Agreement",
-      "NOC from Local Municipality/Panchayat",
-      "Partnership Deed/MOA & AOA (as applicable)",
-      "Blue Print/Layout Plan of Manufacturing Unit",
-      "List of Food Categories & Items",
-      "List of Machinery & Equipment (for manufacturers)",
-      "Water Test Report (for manufacturers)"
+      "Business Registration or Incorporation Certificate",
+      "Property Ownership/Rent Agreement",
+      "Partnership Deed/Memorandum of Association",
+      "NOC from Local Authority",
+      "List of Food Products Being Manufactured/Sold",
+      "Food Safety Management Plan",
+      "Layout Plan of Processing Unit",
+      "Water Testing Report",
+      "List of Equipment and Machinery",
+      "Medical Fitness Certificates of Food Handlers"
     ],
     process: [
       {
         title: "Documentation Collection",
-        description: "We collect all necessary documents and verify your eligibility for State FSSAI License."
+        description: "We collect all necessary documents and verify your eligibility for FSSAI State License."
       },
       {
         title: "Application Preparation",
@@ -47,34 +50,42 @@ const FSSAIStateLicense = () => {
         description: "We submit your application with supporting documents on the FSSAI portal."
       },
       {
-        title: "Inspection Preparation",
-        description: "We help you prepare for the potential inspection by food safety authorities."
+        title: "Fee Payment",
+        description: "License fee is paid through the portal with our assistance."
+      },
+      {
+        title: "Inspection Coordination",
+        description: "We help coordinate the mandatory physical inspection by food safety officers."
+      },
+      {
+        title: "Query Resolution",
+        description: "Our team handles any queries or additional requirements from authorities."
       },
       {
         title: "License Issuance",
-        description: "Upon verification, approval, and fee payment, we help you obtain your State FSSAI License."
+        description: "Upon successful verification and inspection, we help you obtain your FSSAI State License."
       }
     ],
     faqs: [
       {
-        question: "Who needs a State FSSAI License?",
-        answer: "Medium food businesses with annual turnover between Rs. 12 lakhs to 20 crores operating within a single state, including manufacturers, processors, distributors, retailers, and transporters need a State FSSAI License."
+        question: "Who needs an FSSAI State License?",
+        answer: "Medium-sized food businesses with annual turnover between Rs. 12 lakhs to Rs. 20 crores operating within a single state, including restaurants with seating capacity over 10, medium-sized manufacturers, distributors with state-wide operations, and storage facilities."
       },
       {
-        question: "Can I operate in multiple states with a State FSSAI License?",
-        answer: "No, State FSSAI License is valid for operations within a single state only. For multi-state operations, you would need a Central FSSAI License regardless of turnover."
+        question: "How long does it take to get an FSSAI State License?",
+        answer: "The process typically takes 20-30 working days after submission of all required documents, including the time required for physical inspection by food safety authorities."
       },
       {
-        question: "Is inspection mandatory for State FSSAI License?",
-        answer: "Yes, physical inspection by food safety officers is generally conducted before issuing a State FSSAI License, especially for manufacturing units."
+        question: "Is physical inspection mandatory for FSSAI State License?",
+        answer: "Yes, physical inspection by authorized food safety officers is mandatory for FSSAI State License. Our team helps prepare your premises for inspection and coordinates with authorities."
       },
       {
-        question: "How long does it take to get a State FSSAI License?",
-        answer: "The process typically takes 30-45 days, including inspection and verification. With our expert assistance, we aim to expedite the process as much as possible within regulatory frameworks."
+        question: "What is the validity period of FSSAI State License?",
+        answer: "FSSAI State License can be obtained for 1 to 5 years based on your preference. Renewal application should be submitted at least 30 days before expiry."
       },
       {
-        question: "Can I upgrade from Basic Registration to State License?",
-        answer: "Yes, if your business grows beyond Rs. 12 lakhs annual turnover, you must upgrade from Basic Registration to State License. We can assist with this transition process."
+        question: "Can I upgrade from Basic FSSAI Registration to State License?",
+        answer: "Yes, if your business has grown and now has turnover exceeding Rs. 12 lakhs, you can upgrade from Basic FSSAI Registration to State License. Our team handles the entire upgrade process."
       }
     ]
   };
