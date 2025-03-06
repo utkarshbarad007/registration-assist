@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from '@/hooks/use-toast';
+import { PhoneAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
 interface OTPVerificationProps {
   phoneNumber: string;
@@ -17,22 +19,61 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   const [timeLeft, setTimeLeft] = useState<number>(30);
   const [isResendDisabled, setIsResendDisabled] = useState<boolean>(true);
   const [verificationId, setVerificationId] = useState<string>('');
-  const [mockOtp, setMockOtp] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
+  // Initialize the invisible reCAPTCHA when the component mounts
+  useEffect(() => {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        'size': 'invisible',
+        'callback': () => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          console.log('reCAPTCHA verified');
+        },
+        'expired-callback': () => {
+          // Response expired. Ask user to solve reCAPTCHA again.
+          console.log('reCAPTCHA expired');
+          toast({
+            title: "Verification Expired",
+            description: "Please try again.",
+            variant: "destructive",
+          });
+        }
+      });
+    }
+    
+    if (phoneNumber) {
+      sendOTP();
+    }
+    
+    return () => {
+      // Clean up reCAPTCHA when component unmounts
+      window.recaptchaVerifier?.clear();
+      window.recaptchaVerifier = null;
+    };
+  }, [phoneNumber]);
 
-  // This is a mock function that would be replaced with actual Firebase implementation
+  // Send OTP using Firebase Phone Authentication
   const sendOTP = async () => {
     try {
-      console.log('Sending OTP to', phoneNumber);
-      // In a real implementation, this would call Firebase's signInWithPhoneNumber
-      // and return a confirmation result
-
-      // Generate a mock OTP (6 digits)
-      const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-      setMockOtp(generatedOtp);
-
-      // Simulate successful OTP send
-      const mockVerificationId = Math.random().toString(36).substring(2, 15);
-      setVerificationId(mockVerificationId);
+      setIsLoading(true);
+      
+      // Format the phone number with country code if not already formatted
+      const formattedPhoneNumber = phoneNumber.startsWith('+') 
+        ? phoneNumber 
+        : `+91${phoneNumber}`; // Assuming India (+91) as default
+      
+      console.log('Sending OTP to', formattedPhoneNumber);
+      
+      // Request SMS verification
+      const confirmationResult = await signInWithPhoneNumber(
+        auth, 
+        formattedPhoneNumber, 
+        window.recaptchaVerifier
+      );
+      
+      // Store the verification ID
+      window.confirmationResult = confirmationResult;
       
       // Start countdown for resend button
       setTimeLeft(30);
@@ -40,57 +81,55 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       
       toast({
         title: "OTP Sent",
-        description: `A verification code has been sent to ${phoneNumber}. For testing, use code: ${generatedOtp}`,
+        description: `A verification code has been sent to ${formattedPhoneNumber}.`,
       });
       
-      console.log('Mock verification ID:', mockVerificationId, 'Mock OTP:', generatedOtp);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending OTP:', error);
       toast({
         title: "Error",
-        description: "Failed to send verification code. Please try again.",
+        description: error.message || "Failed to send verification code. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // This is a mock function that would be replaced with actual Firebase implementation
+  // Verify the OTP using Firebase
   const verifyOTP = async () => {
     try {
-      console.log('Verifying OTP:', otp, 'for verification ID:', verificationId);
-      // In a real implementation, this would call confirmationResult.confirm(otp)
+      setIsLoading(true);
       
-      // Verify against our mock OTP or accept any 6-digit code if in development
-      if (otp === mockOtp || (process.env.NODE_ENV === 'development' && otp.length === 6)) {
-        toast({
-          title: "Verification Successful",
-          description: "Your phone number has been verified.",
-        });
-        onVerificationComplete(true);
-      } else {
-        toast({
-          title: "Invalid Code",
-          description: "Please enter the correct verification code.",
-          variant: "destructive",
-        });
+      if (!window.confirmationResult) {
+        throw new Error('Verification session expired. Please request a new code.');
       }
-    } catch (error) {
+      
+      // Verify the OTP code
+      const result = await window.confirmationResult.confirm(otp);
+      
+      // User signed in successfully
+      const user = result.user;
+      console.log('User verified:', user.uid);
+      
+      toast({
+        title: "Verification Successful",
+        description: "Your phone number has been verified.",
+      });
+      
+      onVerificationComplete(true);
+    } catch (error: any) {
       console.error('Error verifying OTP:', error);
       toast({
         title: "Verification Failed",
-        description: "The verification code is invalid. Please try again.",
+        description: error.message || "The verification code is invalid. Please try again.",
         variant: "destructive",
       });
       onVerificationComplete(false);
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  // Start the verification process when the component mounts
-  useEffect(() => {
-    if (phoneNumber) {
-      sendOTP();
-    }
-  }, [phoneNumber]);
 
   // Countdown timer for resend button
   useEffect(() => {
@@ -112,11 +151,6 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         <p className="text-sm text-gray-600 mb-2">
           Enter the 6-digit code sent to {phoneNumber}
         </p>
-        {mockOtp && (
-          <div className="text-sm bg-amber-50 p-2 rounded border border-amber-200">
-            <span className="font-medium">Test Mode:</span> Use code <span className="font-bold">{mockOtp}</span>
-          </div>
-        )}
       </div>
       
       <div className="space-y-3">
@@ -127,14 +161,16 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
           onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ''))}
           placeholder="Enter verification code"
           className="text-center text-lg tracking-widest"
+          disabled={isLoading}
         />
         
         <Button 
           onClick={verifyOTP} 
           className="w-full"
-          disabled={otp.length !== 6}
+          disabled={otp.length !== 6 || isLoading}
+          isLoading={isLoading}
         >
-          Verify
+          {isLoading ? 'Verifying...' : 'Verify'}
         </Button>
         
         <div className="flex justify-center items-center text-sm">
@@ -144,14 +180,26 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
             <button 
               onClick={sendOTP} 
               className="text-brand-600 hover:text-brand-700"
+              disabled={isLoading}
             >
               Resend verification code
             </button>
           )}
         </div>
       </div>
+      
+      {/* Invisible reCAPTCHA container */}
+      <div id="recaptcha-container"></div>
     </div>
   );
 };
+
+// Add necessary type declarations for global window object
+declare global {
+  interface Window {
+    recaptchaVerifier: RecaptchaVerifier | null;
+    confirmationResult: any;
+  }
+}
 
 export default OTPVerification;

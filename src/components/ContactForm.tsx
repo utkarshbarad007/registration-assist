@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import { toast } from '@/hooks/use-toast';
 import OTPVerification from './OTPVerification';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/custom-button";
 
 interface ContactFormProps {
   title?: string;
@@ -35,14 +35,12 @@ const ContactForm: React.FC<ContactFormProps> = ({
       [name]: type === 'checkbox' ? checked : value
     }));
 
-    // Reset verification status if phone number changes
     if (name === 'mobile') {
       setIsPhoneVerified(false);
     }
   };
 
   const handleVerifyPhone = () => {
-    // Basic phone number validation before sending OTP
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(formData.mobile)) {
       toast({
@@ -81,17 +79,12 @@ const ContactForm: React.FC<ContactFormProps> = ({
     }
     
     console.log('Form submitted:', formData);
-    // Here you would usually send the data to your backend
-    
-    // Mock API call to save data (in a real app, this would be an actual API call)
     setTimeout(() => {
-      // Show success message
       toast({
         title: "Thank you for your inquiry",
         description: "Our team will contact you shortly.",
       });
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -155,18 +148,19 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 maxLength={10}
               />
             </div>
-            <button
+            <Button
               type="button"
               onClick={handleVerifyPhone}
+              variant={isPhoneVerified ? "outline" : "default"}
               className={`px-3 py-2 text-sm font-medium rounded-md ${
                 isPhoneVerified
-                  ? 'bg-green-100 text-green-700 cursor-default'
-                  : 'bg-brand-600 text-white hover:bg-brand-700'
+                  ? 'bg-green-100 text-green-700 border-green-200'
+                  : ''
               }`}
               disabled={isPhoneVerified || !formData.mobile || formData.mobile.length !== 10}
             >
               {isPhoneVerified ? 'Verified ✓' : 'Verify'}
-            </button>
+            </Button>
           </div>
 
           {serviceName ? (
@@ -245,13 +239,13 @@ const ContactForm: React.FC<ContactFormProps> = ({
             </label>
           </div>
 
-          <button
+          <Button
             type="submit"
             className="w-full btn-primary py-3 font-semibold"
             disabled={!isPhoneVerified}
           >
             GET STARTED NOW
-          </button>
+          </Button>
           
           {!isPhoneVerified && (
             <p className="text-xs text-center text-amber-600">
@@ -261,7 +255,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
         </form>
       </div>
 
-      {/* OTP Verification Dialog */}
       <Dialog open={isVerifyingPhone} onOpenChange={setIsVerifyingPhone}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
