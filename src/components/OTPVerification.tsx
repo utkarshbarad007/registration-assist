@@ -24,22 +24,26 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   // Initialize the invisible reCAPTCHA when the component mounts
   useEffect(() => {
     if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        'size': 'invisible',
-        'callback': () => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          console.log('reCAPTCHA verified');
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        'recaptcha-container', // This should be a string ID, not the auth object
+        {
+          'size': 'invisible',
+          'callback': () => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            console.log('reCAPTCHA verified');
+          },
+          'expired-callback': () => {
+            // Response expired. Ask user to solve reCAPTCHA again.
+            console.log('reCAPTCHA expired');
+            toast({
+              title: "Verification Expired",
+              description: "Please try again.",
+              variant: "destructive",
+            });
+          }
         },
-        'expired-callback': () => {
-          // Response expired. Ask user to solve reCAPTCHA again.
-          console.log('reCAPTCHA expired');
-          toast({
-            title: "Verification Expired",
-            description: "Please try again.",
-            variant: "destructive",
-          });
-        }
-      });
+        auth // The auth instance should be the third parameter
+      );
     }
     
     if (phoneNumber) {
