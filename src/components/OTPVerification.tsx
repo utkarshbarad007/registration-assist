@@ -61,7 +61,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       // Create new verifier
       if (!recaptchaContainerRef.current) return;
       
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+      window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
         size: 'invisible',
         callback: () => {
           console.log('reCAPTCHA verified');
@@ -74,7 +74,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
             variant: "destructive",
           });
         }
-      });
+      }, auth);
       
       // Handle case where billing is not enabled on Firebase
       console.log("RecaptchaVerifier initialized");
@@ -259,8 +259,8 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         </div>
       </div>
       
-      {/* Invisible reCAPTCHA container */}
-      <div id="recaptcha-container" ref={recaptchaContainerRef}></div>
+      {/* Invisible reCAPTCHA container - using ID instead of ref */}
+      <div id="recaptcha-container"></div>
     </div>
   );
 };
