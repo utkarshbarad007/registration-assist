@@ -40,6 +40,9 @@ import ISO45001 from "./pages/ISO45001";
 import ISO13485 from "./pages/ISO13485";
 import ISO27001 from "./pages/ISO27001";
 import NotFound from "./pages/NotFound";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 
 const queryClient = new QueryClient();
 
@@ -104,6 +107,11 @@ const App = () => (
           <Route path="/services/fssai-central-license" element={<FSSAICentralLicense />} />
           <Route path="/services/basic-fssai-registration" element={<BasicFSSAIRegistration />} />
           <Route path="/services/fssai-state-license" element={<FSSAIStateLicense />} />
+          
+          {/* Legal Pages */}
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/refund" element={<RefundPolicy />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
