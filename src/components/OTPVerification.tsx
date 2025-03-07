@@ -1,9 +1,9 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/custom-button"; // Import the CustomButton as Button
+import { Button } from "@/components/ui/custom-button";
 import { toast } from '@/hooks/use-toast';
-import { PhoneAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 
 interface OTPVerificationProps {
@@ -18,22 +18,44 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   const [otp, setOtp] = useState<string>('');
   const [timeLeft, setTimeLeft] = useState<number>(30);
   const [isResendDisabled, setIsResendDisabled] = useState<boolean>(true);
-  const [verificationId, setVerificationId] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
+  const recaptchaContainerRef = useRef<HTMLDivElement>(null);
   
-  // Initialize the invisible reCAPTCHA when the component mounts
+  // Initialize the invisible reCAPTCHA
   useEffect(() => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        'recaptcha-container', // This should be a string ID, not the auth object
-        {
-          'size': 'invisible',
-          'callback': () => {
-            // reCAPTCHA solved, allow signInWithPhoneNumber.
+    // Clean up function to prevent memory leaks
+    return () => {
+      if (recaptchaVerifierRef.current) {
+        recaptchaVerifierRef.current.clear();
+        recaptchaVerifierRef.current = null;
+      }
+    };
+  }, []);
+
+  // Setup recaptcha and send OTP when component mounts
+  useEffect(() => {
+    if (phoneNumber) {
+      setupRecaptchaAndSendOTP();
+    }
+  }, [phoneNumber]);
+
+  // Setup reCAPTCHA verifier and send OTP
+  const setupRecaptchaAndSendOTP = async () => {
+    try {
+      // Clear existing verifier if it exists
+      if (recaptchaVerifierRef.current) {
+        recaptchaVerifierRef.current.clear();
+      }
+
+      // Create new verifier
+      if (recaptchaContainerRef.current) {
+        recaptchaVerifierRef.current = new RecaptchaVerifier(recaptchaContainerRef.current, {
+          size: 'invisible',
+          callback: () => {
             console.log('reCAPTCHA verified');
           },
           'expired-callback': () => {
-            // Response expired. Ask user to solve reCAPTCHA again.
             console.log('reCAPTCHA expired');
             toast({
               title: "Verification Expired",
@@ -41,26 +63,32 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
               variant: "destructive",
             });
           }
-        },
-        auth // The auth instance should be the third parameter
-      );
+        }, auth);
+
+        // Render the reCAPTCHA widget
+        await recaptchaVerifierRef.current.render();
+        
+        // Send OTP after reCAPTCHA is ready
+        sendOTP();
+      }
+    } catch (error: any) {
+      console.error('Error setting up recaptcha:', error);
+      toast({
+        title: "Verification Error",
+        description: error.message || "Failed to initialize verification. Please try again.",
+        variant: "destructive",
+      });
     }
-    
-    if (phoneNumber) {
-      sendOTP();
-    }
-    
-    return () => {
-      // Clean up reCAPTCHA when component unmounts
-      window.recaptchaVerifier?.clear();
-      window.recaptchaVerifier = null;
-    };
-  }, [phoneNumber]);
+  };
 
   // Send OTP using Firebase Phone Authentication
   const sendOTP = async () => {
     try {
       setIsLoading(true);
+      
+      if (!recaptchaVerifierRef.current) {
+        throw new Error('reCAPTCHA not initialized. Please refresh and try again.');
+      }
       
       // Format the phone number with country code if not already formatted
       const formattedPhoneNumber = phoneNumber.startsWith('+') 
@@ -73,10 +101,10 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
       const confirmationResult = await signInWithPhoneNumber(
         auth, 
         formattedPhoneNumber, 
-        window.recaptchaVerifier
+        recaptchaVerifierRef.current
       );
       
-      // Store the verification ID
+      // Store the confirmation result in window for verification
       window.confirmationResult = confirmationResult;
       
       // Start countdown for resend button
@@ -95,6 +123,12 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         description: error.message || "Failed to send verification code. Please try again.",
         variant: "destructive",
       });
+      
+      // Reset recaptcha on error
+      if (recaptchaVerifierRef.current) {
+        recaptchaVerifierRef.current.clear();
+        setupRecaptchaAndSendOTP(); // Try to set up again
+      }
     } finally {
       setIsLoading(false);
     }
@@ -182,7 +216,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
             <span className="text-gray-500">Resend code in {timeLeft}s</span>
           ) : (
             <button 
-              onClick={sendOTP} 
+              onClick={setupRecaptchaAndSendOTP} 
               className="text-brand-600 hover:text-brand-700"
               disabled={isLoading}
             >
@@ -192,8 +226,8 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         </div>
       </div>
       
-      {/* Invisible reCAPTCHA container */}
-      <div id="recaptcha-container"></div>
+      {/* Invisible reCAPTCHA container with ref */}
+      <div ref={recaptchaContainerRef} id="recaptcha-container"></div>
     </div>
   );
 };
@@ -201,7 +235,6 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
 // Add necessary type declarations for global window object
 declare global {
   interface Window {
-    recaptchaVerifier: RecaptchaVerifier | null;
     confirmationResult: any;
   }
 }
