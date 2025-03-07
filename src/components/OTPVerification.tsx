@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/custom-button"; // Import the CustomButton as Button
 import { toast } from '@/hooks/use-toast';
 import { PhoneAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
@@ -170,7 +170,7 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
           disabled={otp.length !== 6 || isLoading}
           isLoading={isLoading}
         >
-          {isLoading ? 'Verifying...' : 'Verify'}
+          Verify
         </Button>
         
         <div className="flex justify-center items-center text-sm">
