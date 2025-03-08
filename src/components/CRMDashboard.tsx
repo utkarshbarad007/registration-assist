@@ -163,41 +163,43 @@ const CRMDashboard = () => {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-md mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle>Client Portal Login</CardTitle>
+          <Card className="shadow-lg border-0">
+            <CardHeader className="bg-gradient-to-r from-brand-50 to-white border-b pb-6">
+              <CardTitle className="text-xl text-brand-800">Client Portal Login</CardTitle>
               <CardDescription>
                 Login to access your business applications and documents
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleLogin} className="space-y-4">
+            <CardContent className="pt-6">
+              <form onSubmit={handleLogin} className="space-y-5">
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
+                  <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
                   <input
                     id="email"
                     type="email"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="password" className="text-sm font-medium">Password</label>
+                  <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
                   <input
                     id="password"
                     type="password"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                   />
                 </div>
                 <div className="pt-2">
-                  <Button type="submit" className="w-full">Login</Button>
+                  <Button type="submit" className="w-full py-6 text-base font-medium">
+                    Login
+                  </Button>
                 </div>
-                <div className="text-center text-sm text-gray-500">
+                <div className="text-center text-sm text-gray-500 pt-2">
                   <p>Demo credentials: demo@example.com / password</p>
                 </div>
               </form>
