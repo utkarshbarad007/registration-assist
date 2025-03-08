@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -13,20 +13,6 @@ const Footer = () => {
             <p className="text-gray-400 mb-4">
               Your trusted partner for all business registration, compliance, and legal services in India.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                <Instagram size={20} />
-              </a>
-            </div>
           </div>
 
           <div>
@@ -74,13 +60,13 @@ const Footer = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/services" className="text-gray-400 hover:text-white transition-colors duration-200">
+                <NavLink to="/services/business-registration" className="text-gray-400 hover:text-white transition-colors duration-200">
                   Services
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/pricing" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  Pricing
+                <NavLink to="/crm" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Client Portal
                 </NavLink>
               </li>
               <li>
@@ -89,13 +75,13 @@ const Footer = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/blog" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  Blog
+                <NavLink to="/faq" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  FAQ
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/faq" className="text-gray-400 hover:text-white transition-colors duration-200">
-                  FAQ
+                <NavLink to="/blog" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Blog
                 </NavLink>
               </li>
             </ul>

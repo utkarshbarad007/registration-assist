@@ -43,6 +43,7 @@ import NotFound from "./pages/NotFound";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import CRM from "./pages/CRM";
 
 const queryClient = new QueryClient();
 
@@ -107,6 +108,9 @@ const App = () => (
           <Route path="/services/fssai-central-license" element={<FSSAICentralLicense />} />
           <Route path="/services/basic-fssai-registration" element={<BasicFSSAIRegistration />} />
           <Route path="/services/fssai-state-license" element={<FSSAIStateLicense />} />
+          
+          {/* CRM Route */}
+          <Route path="/crm" element={<CRM />} />
           
           {/* Legal Pages */}
           <Route path="/terms" element={<TermsOfService />} />

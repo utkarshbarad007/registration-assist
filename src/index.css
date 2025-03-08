@@ -1,88 +1,63 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 210 50% 98%;
+    --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 217 92% 38%;
+    --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
-
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --brand-50: 216 100% 96%;
+    --brand-100: 221 100% 91%;
+    --brand-200: 220 100% 85%;
+    --brand-300: 216 100% 76%;
+    --brand-400: 218 96% 66%;
+    --brand-500: 218 94% 55%;
+    --brand-600: 217 92% 51%;
+    --brand-700: 223 76% 42%;
+    --brand-800: 227 65% 35%;
+    --brand-900: 228 62% 29%;
+    --brand-950: 232 62% 18%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 224.3 76.3% 48%;
   }
 }
 
@@ -90,112 +65,58 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
   }
+}
 
-  .nav-link {
-    @apply hover:text-brand-500 transition-colors duration-200;
-  }
-
-  .nav-dropdown {
-    @apply hidden group-hover:block absolute z-50 min-w-[250px] bg-white shadow-lg rounded-md py-2 border border-gray-100 animate-fade-in;
-  }
-
-  .nav-dropdown-item {
-    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition-colors duration-150;
-  }
-
-  .glass-card {
-    @apply bg-white/90 backdrop-blur-sm shadow-lg rounded-xl border border-gray-100;
-  }
-
-  .service-card {
-    @apply glass-card p-6 transition-all duration-300 hover:shadow-card-hover hover:translate-y-[-5px];
-  }
-
+@layer components {
   .btn-primary {
-    @apply bg-brand-600 hover:bg-brand-700 text-white font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+    @apply bg-brand-600 hover:bg-brand-700 text-white font-medium px-5 py-2.5 rounded transition-colors duration-200 inline-flex items-center justify-center;
   }
   
   .btn-outline {
-    @apply border border-brand-600 text-brand-600 hover:bg-brand-50 font-medium px-5 py-2.5 rounded-lg transition-colors duration-200;
+    @apply bg-transparent border border-current font-medium px-5 py-2.5 rounded transition-colors duration-200 inline-flex items-center justify-center;
   }
-
-  .form-input {
-    @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent;
+  
+  .nav-dropdown {
+    @apply invisible absolute z-10 w-56 mt-1 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100;
   }
-
-  /* Added animations */
-  @keyframes slide-up {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  .animate-slide-up {
-    animation: slide-up 0.5s ease-out forwards;
-  }
-
-  @keyframes shadow-pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3);
-    }
-    70% {
-      box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-    }
-  }
-
-  .shadow-card-hover {
-    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+  
+  .nav-dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-brand-600;
   }
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 1px;
+/* Typing indicator animation for the chatbot */
+.typing-indicator {
+  display: flex;
+  align-items: center;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  background: #3B82F6;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 3px;
+  animation: bounce 1.3s linear infinite;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.15s;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-::-webkit-scrollbar {
-  width: 1px;
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+@keyframes bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
 }
