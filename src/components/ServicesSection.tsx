@@ -110,7 +110,6 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" id="services">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">What We can Do For You</p>
         </div>
 
         <div className="relative">
