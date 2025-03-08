@@ -178,41 +178,6 @@ const AIChatbot = () => {
           </div>
         </div>
       )}
-
-      {/* CSS for typing indicator */}
-      <style jsx>{`
-        .typing-indicator {
-          display: flex;
-          align-items: center;
-        }
-        
-        .typing-indicator span {
-          height: 8px;
-          width: 8px;
-          background: #3B82F6;
-          border-radius: 50%;
-          display: inline-block;
-          margin-right: 3px;
-          animation: bounce 1.3s linear infinite;
-        }
-        
-        .typing-indicator span:nth-child(2) {
-          animation-delay: 0.15s;
-        }
-        
-        .typing-indicator span:nth-child(3) {
-          animation-delay: 0.3s;
-        }
-        
-        @keyframes bounce {
-          0%, 60%, 100% {
-            transform: translateY(0);
-          }
-          30% {
-            transform: translateY(-4px);
-          }
-        }
-      `}</style>
     </>
   );
 };
