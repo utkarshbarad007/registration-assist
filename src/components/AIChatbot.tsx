@@ -43,6 +43,7 @@ const AIChatbot = () => {
     setIsLoading(true);
 
     try {
+      // Using the correct API endpoint and request format for Deepseek API
       const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -52,7 +53,14 @@ const AIChatbot = () => {
         body: JSON.stringify({
           model: 'deepseek-chat',
           messages: [
-            { role: 'system', content: 'You are a helpful business assistant for BizFile. You assist users with information about business registration, compliance, legal formalities, trademark registration, GST registration, ISO certification, and other business-related services offered by BizFile.' },
+            { 
+              role: 'system', 
+              content: 'You are a helpful business assistant for BizFile. You assist users with information about business registration, compliance, legal formalities, trademark registration, GST registration, ISO certification, and other business-related services offered by BizFile.'
+            },
+            ...messages.map(msg => ({
+              role: msg.isUser ? 'user' : 'assistant',
+              content: msg.text
+            })),
             { role: 'user', content: userMessage }
           ],
           max_tokens: 500
@@ -60,7 +68,9 @@ const AIChatbot = () => {
       });
 
       if (!response.ok) {
-        throw new Error('API request failed');
+        const errorData = await response.text();
+        console.error('API error:', errorData);
+        throw new Error(`API request failed: ${response.status}`);
       }
 
       const data = await response.json();
