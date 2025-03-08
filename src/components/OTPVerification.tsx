@@ -217,40 +217,45 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
   }, [timeLeft]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 py-2">
       <div className="text-center">
-        <p className="text-sm text-gray-600 mb-2">
-          Enter the 6-digit code sent to {phoneNumber}
+        <p className="text-sm text-gray-600">
+          Enter the 6-digit code sent to <span className="font-semibold">+91 {phoneNumber}</span>
         </p>
       </div>
       
-      <div className="space-y-3">
-        <Input
-          type="text"
-          maxLength={6}
-          value={otp}
-          onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ''))}
-          placeholder="Enter verification code"
-          className="text-center text-lg tracking-widest"
-          disabled={isLoading}
-        />
+      <div className="space-y-4">
+        <div className="relative">
+          <Input
+            type="text"
+            maxLength={6}
+            value={otp}
+            onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ''))}
+            placeholder="Enter verification code"
+            className="text-center text-lg tracking-widest py-6 border-gray-300 focus:border-brand-500"
+            disabled={isLoading}
+          />
+          <div className="absolute inset-x-0 top-full text-xs text-gray-500 text-center mt-1">
+            {otp.length}/6 digits
+          </div>
+        </div>
         
         <Button 
           onClick={verifyOTP} 
-          className="w-full"
+          className="w-full py-6 bg-brand-600 hover:bg-brand-700 text-white transition-colors"
           disabled={otp.length !== 6 || isLoading}
           isLoading={isLoading}
         >
-          Verify
+          Verify OTP
         </Button>
         
-        <div className="flex justify-center items-center text-sm">
+        <div className="flex justify-center items-center text-sm pt-2">
           {isResendDisabled ? (
             <span className="text-gray-500">Resend code in {timeLeft}s</span>
           ) : (
             <button 
               onClick={sendOTP} 
-              className="text-brand-600 hover:text-brand-700"
+              className="text-brand-600 hover:text-brand-700 font-medium"
               disabled={isLoading}
             >
               Resend verification code
@@ -259,8 +264,8 @@ const OTPVerification: React.FC<OTPVerificationProps> = ({
         </div>
       </div>
       
-      {/* Invisible reCAPTCHA container - using ID instead of ref */}
-      <div id="recaptcha-container"></div>
+      {/* Invisible reCAPTCHA container */}
+      <div id="recaptcha-container" ref={recaptchaContainerRef}></div>
     </div>
   );
 };

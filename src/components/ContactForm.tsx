@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { toast } from '@/hooks/use-toast';
 import OTPVerification from './OTPVerification';
@@ -98,7 +99,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   return (
     <>
-      <div className={`glass-card ${compact ? 'p-5' : 'p-6 md:p-8'}`}>
+      <div className={`bg-white rounded-lg shadow-lg border border-gray-100 ${compact ? 'p-5' : 'p-6 md:p-8'}`}>
         <div className="text-center mb-6">
           <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-bold text-gray-800`}>{title}</h3>
           <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
@@ -106,74 +107,78 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="sr-only">Full Name</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Full Name"
+              placeholder="John Doe"
               value={formData.name}
               onChange={handleInputChange}
-              className="form-input"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="sr-only">Email Address</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Email Address"
+              placeholder="example@domain.com"
               value={formData.email}
               onChange={handleInputChange}
-              className="form-input"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               required
             />
           </div>
 
           <div className="flex space-x-2">
             <div className="flex-1">
-              <label htmlFor="mobile" className="sr-only">Mobile Number</label>
+              <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
               <input
                 type="tel"
                 id="mobile"
                 name="mobile"
-                placeholder="Mobile Number"
+                placeholder="10-digit mobile number"
                 value={formData.mobile}
                 onChange={handleInputChange}
-                className={`form-input ${isPhoneVerified ? 'border-green-500' : ''}`}
+                className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent ${
+                  isPhoneVerified ? 'border-green-500 bg-green-50' : 'border-gray-300'
+                }`}
                 required
                 maxLength={10}
               />
             </div>
-            <Button
-              type="button"
-              onClick={handleVerifyPhone}
-              variant={isPhoneVerified ? "outline" : "default"}
-              className={`px-3 py-2 text-sm font-medium rounded-md ${
-                isPhoneVerified
-                  ? 'bg-green-100 text-green-700 border-green-200'
-                  : ''
-              }`}
-              disabled={isPhoneVerified || !formData.mobile || formData.mobile.length !== 10}
-            >
-              {isPhoneVerified ? 'Verified ✓' : 'Verify'}
-            </Button>
+            <div className="self-end">
+              <Button
+                type="button"
+                onClick={handleVerifyPhone}
+                variant={isPhoneVerified ? "outline" : "default"}
+                className={`h-12 px-4 ${
+                  isPhoneVerified
+                    ? 'bg-green-100 text-green-700 border-green-200 hover:bg-green-200'
+                    : ''
+                }`}
+                disabled={isPhoneVerified || !formData.mobile || formData.mobile.length !== 10}
+              >
+                {isPhoneVerified ? 'Verified ✓' : 'Verify'}
+              </Button>
+            </div>
           </div>
 
           {serviceName ? (
             <input type="hidden" name="interestedService" value={serviceName} />
           ) : (
             <div>
-              <label htmlFor="interestedService" className="sr-only">Interested Service</label>
+              <label htmlFor="interestedService" className="block text-sm font-medium text-gray-700 mb-1">Interested Service</label>
               <select
                 id="interestedService"
                 name="interestedService"
                 value={formData.interestedService}
                 onChange={(e) => setFormData(prev => ({ ...prev, interestedService: e.target.value }))}
-                className="form-input"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="">Select a Service</option>
                 <optgroup label="Start Your Business">
@@ -225,7 +230,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
             </div>
           )}
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center mt-2">
             <input
               type="checkbox"
               id="whatsappUpdates"
@@ -234,21 +239,21 @@ const ContactForm: React.FC<ContactFormProps> = ({
               onChange={handleInputChange}
               className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
             />
-            <label htmlFor="whatsappUpdates" className="text-sm text-gray-700">
+            <label htmlFor="whatsappUpdates" className="ml-2 block text-sm text-gray-700">
               Get updates through WhatsApp
             </label>
           </div>
 
           <Button
             type="submit"
-            className="w-full btn-primary py-3 font-semibold"
+            className="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-base transition-colors duration-200"
             disabled={!isPhoneVerified}
           >
             GET STARTED NOW
           </Button>
           
           {!isPhoneVerified && (
-            <p className="text-xs text-center text-amber-600">
+            <p className="text-xs text-center text-amber-600 font-medium">
               Please verify your phone number before submitting
             </p>
           )}

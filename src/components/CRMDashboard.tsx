@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -161,46 +160,47 @@ const CRMDashboard = () => {
 
   if (!isLoggedIn) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-12">
         <div className="max-w-md mx-auto">
-          <Card className="shadow-lg border-0">
-            <CardHeader className="bg-gradient-to-r from-brand-50 to-white border-b pb-6">
-              <CardTitle className="text-xl text-brand-800">Client Portal Login</CardTitle>
-              <CardDescription>
-                Login to access your business applications and documents
+          <Card className="shadow-xl border-0 overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-brand-50 to-white border-b pb-8">
+              <CardTitle className="text-2xl text-brand-800">Client Portal Login</CardTitle>
+              <CardDescription className="text-base text-gray-600 mt-2">
+                Access your business applications and documents
               </CardDescription>
             </CardHeader>
-            <CardContent className="pt-6">
-              <form onSubmit={handleLogin} className="space-y-5">
+            <CardContent className="pt-8 pb-8 px-8">
+              <form onSubmit={handleLogin} className="space-y-6">
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
+                  <label htmlFor="email" className="text-sm font-medium text-gray-700 block">Email</label>
                   <input
                     id="email"
                     type="email"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent shadow-sm"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
+                  <label htmlFor="password" className="text-sm font-medium text-gray-700 block">Password</label>
                   <input
                     id="password"
                     type="password"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent shadow-sm"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                   />
                 </div>
-                <div className="pt-2">
-                  <Button type="submit" className="w-full py-6 text-base font-medium">
+                <div className="pt-4">
+                  <Button type="submit" className="w-full py-6 text-base font-medium bg-brand-600 hover:bg-brand-700">
                     Login
                   </Button>
                 </div>
-                <div className="text-center text-sm text-gray-500 pt-2">
-                  <p>Demo credentials: demo@example.com / password</p>
+                <div className="text-center text-sm text-gray-500 pt-2 border-t border-gray-100 mt-4 pt-4">
+                  <p>Demo credentials:</p>
+                  <p className="font-mono bg-gray-50 p-2 rounded mt-1">demo@example.com / password</p>
                 </div>
               </form>
             </CardContent>
@@ -269,7 +269,7 @@ const CRMDashboard = () => {
           {applications.length > 0 ? (
             <div className="space-y-4">
               {applications.map((app) => (
-                <Card key={app.id} className="overflow-hidden">
+                <Card key={app.id} className="overflow-hidden hover:shadow-md transition-shadow">
                   <CardContent className="p-0">
                     <div className="p-6">
                       <div className="flex justify-between items-start mb-4">
