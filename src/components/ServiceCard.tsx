@@ -20,14 +20,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 }) => {
   return (
     <div className="service-card h-full flex flex-col">
-      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 text-brand-600 mb-5">
+      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 text-brand-600 mb-5 border border-brand-100">
         {icon}
       </div>
       <h3 className="text-lg font-bold text-gray-800 mb-3">{title}</h3>
       <p className="text-gray-600 text-sm flex-grow mb-4">{description}</p>
       
       {price && (
-        <div className="mb-4">
+        <div className="mb-4 bg-brand-50 py-2 px-3 rounded-lg inline-block">
           <span className="text-xl font-bold text-brand-600">₹{price.toLocaleString()}</span>
           <span className="text-sm text-gray-600 ml-1">onwards</span>
         </div>
@@ -35,7 +35,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       
       <Link 
         to={route} 
-        className="inline-flex items-center text-brand-600 hover:text-brand-700 font-medium text-sm group mt-auto"
+        className="inline-flex items-center text-brand-600 hover:text-brand-700 font-medium text-sm group mt-auto border-t pt-3 border-gray-100 w-full"
       >
         Know More
         <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform duration-200" />

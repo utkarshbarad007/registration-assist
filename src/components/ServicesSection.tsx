@@ -1,9 +1,11 @@
+
 import React, { useRef } from 'react';
-import ServiceCard from './ServiceCard';
 import { 
   Building2, Briefcase, BookOpen, LandPlot, BarChart, FileCheck, Award, 
   ShieldCheck, Landmark, TrendingUp, Cpu, BookOpenCheck, ChevronLeft, ChevronRight 
 } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import ServiceCard from './ServiceCard';
 
 const ServicesSection = () => {
   const servicesCategoriesRef = useRef<HTMLDivElement>(null);
@@ -105,17 +107,18 @@ const ServicesSection = () => {
   ];
 
   return (
-    <div className="py-20">
+    <div className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12" id="services">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Everything you need to start and grow your business</p>
         </div>
 
         <div className="relative">
           <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 z-10 md:flex hidden">
             <button 
               onClick={() => scroll(servicesCategoriesRef, 'left')}
-              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors border border-gray-200"
             >
               <ChevronLeft size={24} />
             </button>
@@ -127,12 +130,16 @@ const ServicesSection = () => {
           >
             {serviceCategories.map((service, index) => (
               <div key={index} className="min-w-[300px] snap-start">
-                <ServiceCard
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  route={service.route}
-                />
+                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+                  <CardContent className="pt-6">
+                    <ServiceCard
+                      icon={service.icon}
+                      title={service.title}
+                      description={service.description}
+                      route={service.route}
+                    />
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
@@ -140,7 +147,7 @@ const ServicesSection = () => {
           <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 md:flex hidden">
             <button 
               onClick={() => scroll(servicesCategoriesRef, 'right')}
-              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors border border-gray-200"
             >
               <ChevronRight size={24} />
             </button>
@@ -156,7 +163,7 @@ const ServicesSection = () => {
           <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 z-10 md:flex hidden">
             <button 
               onClick={() => scroll(topServicesRef, 'left')}
-              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors border border-gray-200"
             >
               <ChevronLeft size={24} />
             </button>
@@ -168,13 +175,17 @@ const ServicesSection = () => {
           >
             {topServices.map((service, index) => (
               <div key={index} className="min-w-[300px] snap-start">
-                <ServiceCard
-                  icon={service.icon}
-                  title={service.title}
-                  description={service.description}
-                  price={service.price}
-                  route={service.route}
-                />
+                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+                  <CardContent className="pt-6">
+                    <ServiceCard
+                      icon={service.icon}
+                      title={service.title}
+                      description={service.description}
+                      price={service.price}
+                      route={service.route}
+                    />
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
@@ -182,7 +193,7 @@ const ServicesSection = () => {
           <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10 md:flex hidden">
             <button 
               onClick={() => scroll(topServicesRef, 'right')}
-              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors"
+              className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors border border-gray-200"
             >
               <ChevronRight size={24} />
             </button>
