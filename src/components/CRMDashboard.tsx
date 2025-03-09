@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Folder, FileText, Clock, CheckCircle, AlertCircle, Phone, MessageSquare, Upload, Download } from 'lucide-react';
+import { Input } from "@/components/ui/input";
 
 interface Application {
   id: string;
@@ -122,7 +123,7 @@ const CRMDashboard = () => {
     } else {
       toast({
         title: "Login Failed",
-        description: "Invalid credentials. Try demo@example.com / password",
+        description: "Invalid credentials",
         variant: "destructive"
       });
     }
@@ -164,43 +165,36 @@ const CRMDashboard = () => {
         <div className="max-w-md mx-auto">
           <Card className="shadow-xl border-0 overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-brand-50 to-white border-b pb-8">
-              <CardTitle className="text-2xl text-brand-800">Client Portal Login</CardTitle>
-              <CardDescription className="text-base text-gray-600 mt-2">
-                Access your business applications and documents
-              </CardDescription>
+              <CardTitle className="text-2xl text-brand-800">Portal Login</CardTitle>
             </CardHeader>
             <CardContent className="pt-8 pb-8 px-8">
               <form onSubmit={handleLogin} className="space-y-6">
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-gray-700 block">Email</label>
-                  <input
+                  <Input
                     id="email"
                     type="email"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent shadow-sm"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
+                    className="w-full"
                   />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="password" className="text-sm font-medium text-gray-700 block">Password</label>
-                  <input
+                  <Input
                     id="password"
                     type="password"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent shadow-sm"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
+                    className="w-full"
                   />
                 </div>
                 <div className="pt-4">
                   <Button type="submit" className="w-full py-6 text-base font-medium bg-brand-600 hover:bg-brand-700">
                     Login
                   </Button>
-                </div>
-                <div className="text-center text-sm text-gray-500 pt-2 border-t border-gray-100 mt-4 pt-4">
-                  <p>Demo credentials:</p>
-                  <p className="font-mono bg-gray-50 p-2 rounded mt-1">demo@example.com / password</p>
                 </div>
               </form>
             </CardContent>
