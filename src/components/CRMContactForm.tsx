@@ -23,7 +23,7 @@ const CRMContactForm: React.FC<CRMContactFormProps> = ({
       
       <div className="w-full">
         <iframe 
-          src="https://crm.bizfile.in/forms/wtl/2d3ba62d97505923f206020c5bcdac25?styled=1&with_logo=1" 
+          src="https://crm.bizfile.in/forms/wtl/2d3ba62d97505923f206020c5bcdac25?styled=0" 
           className="w-full min-h-[500px] border-0" 
           title="CRM Contact Form"
         />
