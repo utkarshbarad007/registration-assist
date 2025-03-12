@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ContactForm from './ContactForm';
+import CRMContactForm from './CRMContactForm';
 import { CheckCircle } from 'lucide-react';
 
 const Hero = () => {
@@ -52,7 +52,7 @@ const Hero = () => {
           </div>
 
           <div className="lg:max-w-md mx-auto w-full animate-slide-up">
-            <ContactForm />
+            <CRMContactForm />
           </div>
         </div>
       </div>
