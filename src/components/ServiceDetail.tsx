@@ -2,7 +2,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import CRMContactForm from './CRMContactForm';
+import ContactForm from './ContactForm';
 import { ArrowLeft, ChevronRight, CheckCircle, Clock, Shield, BadgeCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({
             </div>
             <div className="lg:col-span-1">
               <div className="bg-white rounded-xl shadow-xl">
-                <CRMContactForm 
+                <ContactForm 
                   title={`Get ${title} Now`}
                   subtitle="Fill the form for expert assistance"
                   serviceName={serviceType}
