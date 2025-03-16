@@ -33,9 +33,9 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({
     <div>
       <Navbar />
       
-      <div className="bg-brand-600 pt-12 pb-12 relative">
+      <div className="bg-brand-600 pt-10 pb-10 relative">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
               <div className="flex items-center text-brand-100 mb-4">
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
@@ -59,6 +59,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({
                   title={`Get ${title} Now`}
                   subtitle="Fill the form for expert assistance"
                   serviceName={serviceType}
+                  compact={true}
                 />
               </div>
             </div>

@@ -1,11 +1,10 @@
-
 import React from 'react';
 import CRMContactForm from './CRMContactForm';
 import { CheckCircle } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-r from-brand-700 to-brand-600 pt-16 pb-24 relative overflow-hidden">
+    <div className="bg-gradient-to-r from-brand-700 to-brand-600 pt-16 pb-16 relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full -mr-20 -mt-20"></div>
@@ -13,16 +12,16 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="text-white animate-fade-in">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               Your Trusted Partner for Business Setup & Compliance
             </h1>
-            <p className="text-xl opacity-90 mb-8">
+            <p className="text-xl opacity-90 mb-6">
               We simplify business registration, compliance, and legal formalities so you can focus on growing your business.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
               <div className="flex items-start space-x-2">
                 <CheckCircle className="text-brand-200 flex-shrink-0 mt-1" size={20} />
                 <span className="opacity-90">Company Registration</span>
@@ -51,7 +50,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="lg:max-w-md mx-auto w-full animate-slide-up">
+          <div className="lg:max-w-lg mx-auto w-full animate-slide-up">
             <CRMContactForm />
           </div>
         </div>
